@@ -21,6 +21,20 @@ html,body{
     margin: 0;
 }
 
+body{
+    background-color: var(--secondaryColor);
+}
+
+#network-background{
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.4;
+}
+
 body *{
     transition: 0.3s;
 }
@@ -80,18 +94,24 @@ h6{ font-size: 16px;}
 
 .s1{
     background-color: var(--mainColor);
+    background-color: color-mix(in srgb, var(--mainColor) 94%, transparent);
     border-bottom:1px solid var(--borderColor);
     overflow:auto;
+    position: relative;
 }
 
 .s2{
     background-color: var(--secondaryColor);
+    background-color: color-mix(in srgb, var(--secondaryColor) 94%, transparent);
     border-bottom:1px solid var(--borderColor);
     overflow:auto;
+    position: relative;
 }
 .main-container{
     width: 1200px;
     margin: 0auto;
+    position: relative;
+    z-index: 3;
 }
 
 .greeting-wrapper{
