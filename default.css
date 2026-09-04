@@ -352,6 +352,143 @@ h6{ font-size: 16px;}
     gap:100px;
 }
 
+.journey-section{
+    overflow: hidden;
+}
+
+.journey-layout{
+    display: grid;
+    grid-template-columns: minmax(240px, 0.7fr) minmax(0, 1.3fr);
+    gap: 80px;
+    padding: 80px 0;
+}
+
+.journey-intro{
+    align-self: start;
+    position: sticky;
+    top: 30px;
+    padding-top: 45px;
+}
+
+.journey-intro h2{
+    margin: 8px 0 18px;
+}
+
+.journey-intro p:last-child{
+    max-width: 330px;
+    line-height: 1.7;
+}
+
+.section-label,
+.journey-label{
+    margin: 0;
+    color: var(--buttonColor);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.journey-timeline{
+    position: relative;
+    padding: 10px 0;
+}
+
+.journey-network{
+    position: absolute;
+    top: 26px;
+    bottom: 26px;
+    left: 50%;
+    width: 100%;
+    height: calc(100% - 52px);
+    overflow: visible;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.journey-network path{
+    fill: none;
+    stroke: var(--buttonColor);
+    stroke-width: 0.7;
+    stroke-dasharray: 0.012 0.018;
+    opacity: 0.55;
+}
+
+.journey-particle{
+    fill: var(--buttonColor);
+    filter: drop-shadow(0 0 4px var(--buttonColor));
+}
+
+.journey-item{
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 74px 1fr;
+    align-items: center;
+    min-height: 150px;
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.journey-item.is-visible{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.journey-card{
+    grid-column: 1;
+    padding: 18px 22px;
+    border: 1px solid var(--borderColor);
+    border-left: 2px solid var(--buttonColor);
+    background-color: color-mix(in srgb, var(--secondaryColor) 92%, transparent);
+    box-shadow: 0 6px 18px color-mix(in srgb, var(--borderColor) 25%, transparent);
+}
+
+.journey-card h3{
+    margin: 7px 0 9px;
+    font-size: 20px;
+}
+
+.journey-card p{
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+.journey-node{
+    grid-column: 2;
+    justify-self: center;
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border: 2px solid var(--buttonColor);
+    border-radius: 50%;
+    color: var(--buttonColor);
+    background-color: var(--secondaryColor);
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--buttonColor) 12%, transparent), 0 0 16px color-mix(in srgb, var(--buttonColor) 55%, transparent);
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+    font-weight: 700;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.journey-node:hover{
+    transform: scale(1.16);
+    box-shadow: 0 0 0 8px color-mix(in srgb, var(--buttonColor) 15%, transparent), 0 0 25px color-mix(in srgb, var(--buttonColor) 80%, transparent);
+}
+
+.journey-item:nth-of-type(even) .journey-card{
+    grid-column: 3;
+    border-left: 1px solid var(--borderColor);
+    border-right: 2px solid var(--buttonColor);
+}
+
+.journey-item:nth-of-type(even) .journey-node{
+    grid-column: 2;
+}
+
 #skills {
     display: flex;
     justify-content: space-evenly;
@@ -469,5 +606,57 @@ h6{ font-size: 16px;}
 
     .right-column{
         justify-content: center;
+    }
+
+    .journey-layout{
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 55px 0;
+    }
+
+    .journey-intro{
+        position: static;
+        padding-top: 0;
+    }
+
+    .journey-intro p:last-child{
+        max-width: none;
+    }
+
+    .journey-timeline{
+        padding: 0;
+    }
+
+    .journey-network{
+        left: 26px;
+        width: 2px;
+        transform: none;
+    }
+
+    .journey-item,
+    .journey-item:nth-of-type(even){
+        grid-template-columns: 54px minmax(0, 1fr);
+        min-height: 0;
+        margin-bottom: 22px;
+    }
+
+    .journey-card,
+    .journey-item:nth-of-type(even) .journey-card{
+        grid-column: 2;
+        border-left: 2px solid var(--buttonColor);
+        border-right: 1px solid var(--borderColor);
+    }
+
+    .journey-node,
+    .journey-item:nth-of-type(even) .journey-node{
+        grid-column: 1;
+        grid-row: 1;
+        width: 38px;
+        height: 38px;
+        font-size: 13px;
+    }
+
+    .journey-card h3{
+        font-size: 17px;
     }
 }

@@ -148,3 +148,31 @@ if (cursorGlow && supportsCustomCursor) {
 		})
 	})
 }
+
+const journeyItems = document.querySelectorAll('.journey-item')
+const journeyMotionAllowed = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+if (journeyItems.length) {
+	if (!journeyMotionAllowed) {
+		journeyItems.forEach(function(item){
+			item.classList.add('is-visible')
+		})
+	} else {
+		const journeyObserver = new IntersectionObserver(function(entries, observer){
+			entries.forEach(function(entry){
+				if (entry.isIntersecting) {
+					const item = entry.target
+					const itemIndex = Array.from(journeyItems).indexOf(item)
+					setTimeout(function(){
+						item.classList.add('is-visible')
+					}, itemIndex * 120)
+					observer.unobserve(item)
+				}
+			})
+		}, { threshold: 0.2 })
+
+		journeyItems.forEach(function(item){
+			journeyObserver.observe(item)
+		})
+	}
+}
