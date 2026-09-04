@@ -244,11 +244,57 @@ h6{ font-size: 16px;}
 }
 #profile_pic{
     display: block;
-    margin: 0 auto;
     height: 200px;
     width: 200px;
     object-fit: cover;
     border: 2px solid var(--borderColor);
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 12px color-mix(in srgb, var(--buttonColor) 30%, transparent);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.profile-frame{
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 224px;
+    height: 224px;
+    margin: 0 auto;
+}
+
+.profile-frame::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 7px;
+    background-color: var(--buttonColor);
+    background-image: linear-gradient(135deg, color-mix(in srgb, var(--buttonColor) 90%, white), var(--buttonColor));
+    background-size: 8px 8px;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    opacity: 0.85;
+    pointer-events: none;
+}
+
+.profile-frame::after{
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    top: 5px;
+    left: 5px;
+    background-color: var(--buttonColor);
+    box-shadow: 208px 0 var(--buttonColor), 0 208px var(--buttonColor), 208px 208px var(--buttonColor);
+    opacity: 0.9;
+    pointer-events: none;
+}
+
+.profile-frame:hover #profile_pic{
+    box-shadow: 0 0 22px color-mix(in srgb, var(--buttonColor) 65%, transparent);
+    transform: scale(1.03);
 }
 
 #theme-options-wrapper{
