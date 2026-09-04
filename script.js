@@ -127,3 +127,24 @@ if (networkCanvas && !reducedMotion) {
 	resizeNetwork()
 	drawNetwork()
 }
+
+const cursorGlow = document.getElementById('cursor-glow')
+const supportsCustomCursor = window.matchMedia('(pointer: fine)').matches && !reducedMotion
+
+if (cursorGlow && supportsCustomCursor) {
+	document.body.classList.add('custom-cursor')
+
+	document.addEventListener('pointermove', function(event){
+		cursorGlow.style.left = event.clientX + 'px'
+		cursorGlow.style.top = event.clientY + 'px'
+	})
+
+	document.querySelectorAll('a, button, input[type="submit"], .theme-dot').forEach(function(element){
+		element.addEventListener('mouseenter', function(){
+			cursorGlow.classList.add('is-hovering')
+		})
+		element.addEventListener('mouseleave', function(){
+			cursorGlow.classList.remove('is-hovering')
+		})
+	})
+}

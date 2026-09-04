@@ -35,6 +35,50 @@ body{
     opacity: 0.4;
 }
 
+#cursor-glow{
+    display: none;
+}
+
+@media (pointer: fine) and (prefers-reduced-motion: no-preference){
+    body.custom-cursor,
+    body.custom-cursor a,
+    body.custom-cursor button,
+    body.custom-cursor input,
+    body.custom-cursor textarea{
+        cursor: none;
+    }
+
+    #cursor-glow{
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 22px;
+        height: 22px;
+        border: 1px solid var(--buttonColor);
+        border-radius: 50%;
+        box-shadow: 0 0 14px var(--buttonColor);
+        opacity: 0.4;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+        z-index: 10;
+    }
+
+    #cursor-glow.is-hovering{
+        width: 42px;
+        height: 42px;
+        opacity: 0.65;
+    }
+
+    a:hover,
+    button:hover,
+    input[type="submit"]:hover,
+    .theme-dot:hover{
+        transform: scale(1.04);
+    }
+}
+
 body *{
     transition: 0.3s;
 }
