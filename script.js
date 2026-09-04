@@ -38,3 +38,25 @@ function setTheme(mode){
     
     localStorage.setItem('theme', mode)
 }
+
+const typingSubtitle = document.getElementById('typing-subtitle')
+const phrases = [
+	'Software Developer',
+	'Problem Solver',
+	'Lifelong Learner',
+	'Builder & Creator'
+]
+
+if (typingSubtitle && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+	let phraseIndex = 0
+
+	setInterval(function(){
+		typingSubtitle.classList.add('is-changing')
+
+		setTimeout(function(){
+			phraseIndex = (phraseIndex + 1) % phrases.length
+			typingSubtitle.textContent = phrases[phraseIndex]
+			typingSubtitle.classList.remove('is-changing')
+		}, 350)
+	}, 2800)
+}
