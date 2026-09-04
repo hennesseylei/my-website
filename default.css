@@ -608,6 +608,19 @@ h6{ font-size: 16px;}
         justify-content: center;
     }
 
+    .post-wrapper{
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .post{
+        width: 100%;
+    }
+
+    .thumbnail{
+        height: auto;
+        aspect-ratio: 16 / 9;
+    }
+
     .journey-layout{
         grid-template-columns: 1fr;
         gap: 30px;
